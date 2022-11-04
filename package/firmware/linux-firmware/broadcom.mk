@@ -128,3 +128,14 @@ define Package/station-p2-firmware/install
 	$(INSTALL_DATA) ./brcm_firmware/ap6275s/nvram_ap6275s.txt $(1)/lib/firmware/brcm/brcmfmac43752-sdio.firefly,rk3568-roc-pc.txt
 endef
 $(eval $(call BuildPackage,station-p2-firmware))
+
+
+Package/rock960-firmware = $(call Package/firmware-default,Broadcom FullMac SDIO firmware)
+define Package/rock960-firmware/install
+	$(INSTALL_DIR) $(1)/lib/firmware/brcm
+	$(INSTALL_DATA) ./brcm_firmware/ap6356s/BCM4356A2.hcd $(1)/lib/firmware/brcm/BCM4356A2.hcd
+	$(INSTALL_DATA) ./brcm_firmware/ap6356s/brcmfmac4356-sdio.txt $(1)/lib/firmware/brcm/brcmfmac4356-sdio.txt
+	$(INSTALL_DATA) ./brcm_firmware/ap6356s/brcmfmac4356-sdio.bin $(1)/lib/firmware/brcm/brcmfmac4356-sdio.bin
+	$(INSTALL_DATA) ./brcm_firmware/ap6356s/brcmfmac4356-sdio.vamrs,rock960.txt $(1)/lib/firmware/brcm/brcmfmac4356-sdio.vamrs,rock960.txt
+endef
+$(eval $(call BuildPackage,rock960-firmware))
